@@ -153,12 +153,24 @@ var reverse = function(string) {
     return string[0];
   }
 
-  var newString = string.slice(0, string.length - 1)
-  return string.slice(string.length - 1) + reverse(newString);
+  var nextString = string.slice(0, string.length - 1)
+  return string.slice(string.length - 1) + reverse(nextString);
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  var normalizedString = string.toLowerCase().replace(' ','');
+  if (normalizedString[0] === normalizedString[normalizedString.length - 1]
+    && normalizedString.length <= 2) {
+    return true;
+  }
+
+  if (normalizedString[0] === normalizedString[normalizedString.length - 1]) {
+    var nextString = normalizedString.slice(1, normalizedString.length - 1);
+    return palindrome(nextString);
+  }
+
+  return false;
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
