@@ -179,6 +179,43 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  //when both inputs are 0
+  if (x === 0
+  && y === 0) {
+    return NaN;
+  }
+
+
+  //when both inputs are negative
+  if (x < 0
+    && y < 0) {
+    if (x > y) {
+      return x;
+    }
+
+    var newX = x - y;
+    return modulo(newX , y);
+  }
+
+  //when x is negative and y is positive
+  if (x < 0
+    && y > 0) {
+    if (x > -y) {
+      return x;
+    }
+
+    var newX = x + y;
+    return modulo(newX , y);
+  }
+
+
+  //general case
+  if (x < y) {
+    return x;
+  }
+
+  var newX = x - y;
+  return modulo(newX , y);
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
